@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+    <link rel="stylesheet" href="/ytmp3/static/css/styles.css" type="text/css">
+    <link rel="icon" href="{{ url_for('static', filename='images/favicon.ico') }}" type="image/x-icon">
+    <title>YouTube to MP3 Downloader</title>
+</head>
+<body>
+    <h1>YouTube to MP3 Downloader</h1>
+    <em><h3>Insert a valid YouTube link and click to begin the download!</h3></em>
+    <input type="text" id="videoLink" placeholder="Paste link here..." /> <br>
+    <button class="btn-secondary" id="downloadButton">Download <i class="fa-solid fa-download"></i></button>
+    <p id="statusMessage">Begin the download</p>
+    <h4>About the project</h4>
+    <em><p class="info">I am learning web development and I am challenging myself to learn by making mini projects like these. I wanted to make a YouTube to mp3 for a long time cause of the annoying pop-ups I got or potential viruses. So enjoy the service, ad free and virus free!</p></em>
+    <hr>
+    <p>II / C</p>
+    <em><p>© Copyright 2024 <a href="https://dujma7.github.io/Personal-Website/">Zvonko Dujmovic</a></p></em>
+    <script>
+        document.getElementById('downloadButton').addEventListener('click', () => {
+            let status = document.getElementById("statusMessage");
+            const link = document.getElementById('videoLink').value;
+            status.innerHTML = "Downloading...";
+            fetch('/download', { 
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ link })
+            })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Network response was not ok ' + response.statusText);
+                }
+                return response.json();
+            })
+            .then(data => {
+                status.innerHTML=(data.message);
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                status.innerHTML = 'An error occurred: ' + error.message;
+            });
+        });
+    </script>
+    <script src="https://kit.fontawesome.com/f900d7241a.js" crossorigin="anonymous"></script>
+</body>
+</html>
+
