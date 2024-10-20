@@ -1,0 +1,66 @@
+body {
+    text-align: center;
+    background-color: #E4E0E1;
+}
+
+h1 {
+    padding-top: 200px;
+    font-family: "Roboto", sans-serif;
+    font-size: 3rem;
+}
+
+h3, p, h4 {
+  font-family: "Monsserrat", sans-serif;
+}
+
+h4 {
+  padding-top: 120px;
+  font-size: 1.5rem;
+}
+
+.info {
+  padding: 0 350px;
+  padding-bottom: 25px;
+}
+
+hr {
+  width: 33%;
+  border-style: none;
+  border-bottom-style: dotted;
+  border-width: 5px;
+}
+
+a, a:visited {
+  text-decoration: none;
+  color: #0000009f;
+}
+
+input {
+    height: 40px;
+    width: 400px;
+    margin: 40px;
+    border: 1px solid #ccc;
+    outline: none;
+    border-radius: 5%;
+    text-align: center;
+  }
+  
+  input:focus {
+    border-color: #999; /* Greyish border on focus */
+  }
+
+  button {
+    background-color: #2a66a1; /* Darker matte blue */
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 8px; /* Rounded edges */
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease; /* Smooth color transition */
+    box-shadow: none; /* Matte effect by removing shadow */
+  }
+  
+  button:hover {
+    background-color: #1f4e7a; /* Even darker blue on hover */
+  }
